@@ -20,7 +20,7 @@
     <div class="row">
 
       <div class="col-lg-12 my-5">
-        <h2 class="text-center mb-3">Codeigniter 3 CRUD (Create-Read-Update-Delete) Application</h2>
+        <h2 class="text-center mb-3">Codeigniter 3 CRUD (Ajax) Application</h2>
       </div>
 
       <div class="col-lg-12">
