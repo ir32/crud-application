@@ -70,4 +70,46 @@ class Post extends CI_Controller
         echo json_encode($resilt);
  		//echo "<pre>";print_r($resilt);die("heloo");
 	}
+
+	public function read_data() {
+		$this->load->view('file/index');
+	}
+	public function read_xml() {
+		$xmlFile = APPPATH . 'views/xml/sample_data.xml';		
+		if (file_exists($xmlFile) && is_readable($xmlFile)) {
+            $xmlData = file_get_contents($xmlFile);
+
+            $xml = simplexml_load_string($xmlData);
+            $jsonData = json_encode($xml);
+			// echo "<pre>";print_r($jsonData);
+            // $this->output
+            //      ->set_content_type('application/json')
+            //      ->set_output($jsonData);
+			$this->load->view('display_json', ['json_data' => $jsonData]);
+
+        } else {
+            echo 'XML file not found or not readable';
+        }
+	}
+	public function process_form_submission() {
+	
+		$form_data = $this->input->post();
+
+    // Loop through the array and modify keys
+    $modified_data = [];
+    foreach ($form_data as $key => $value) {
+        $underscore_position = strrpos($key, '_');
+        if ($underscore_position !== false) {
+            $modified_key = substr($key, $underscore_position + 1);
+            $modified_data[$modified_key] = $value;
+        }
+    }
+
+    // Print the modified data
+    echo '<pre>';
+    print_r($modified_data);
+    echo '</pre>';
+	}
+	
+
 }

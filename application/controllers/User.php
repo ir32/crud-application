@@ -1,6 +1,6 @@
 <?php 
     class User extends CI_Controller {
-        
+        //http://localhost/crud-application/user/login_view
         public function __construct() {
             parent::__construct();
             $this->load->model('User_model'); 
@@ -71,12 +71,10 @@
         }
 
         function user_profile(){
-        $this->load->view('Auth/user_profile.php');
+            $this->load->view('Auth/user_profile.php');
         }
         public function user_logout() {
             $this->session->sess_destroy(); 
-            redirect(base_url());
+            redirect('user/login_view');
         }
-        
-
     }
